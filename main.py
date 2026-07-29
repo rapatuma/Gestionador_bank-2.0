@@ -2,14 +2,16 @@ import time
 
 dicc  = {
 
-    "8298355868": " numero de Cristina Gabriela Mejia Morillo",
-    "8495225868": " numero de jose Gabriel ortega mejia",
-    "8495995868": " numero de Josefani Gabriela Ortega Mejia"
+    "8298355868": " Cristina Gabriela Mejia Morillo",
+    "8495225868": " jose Gabriel ortega mejia",
+    "8495995868": " Josefani Gabriela Ortega Mejia",
+    "8494575868": "Jose Ortega Corniel"
 }
 
 
 
 historial = []
+
 
 cuenta_tercero = 123456
 cuenta_personal = 123
@@ -22,27 +24,27 @@ while name == "":
     print("Debe ingresar su nombre para continuar")
     name = input("ingrese su nombre: ")
 
-# log_in = int(input("ingrese su pin: "))
-# time.sleep(2)
-# print("verificando su pin...")
-# time.sleep(2)
-# while log_in != primer_pin:
-#    print("El pin es incorrecto.") 
-#    log_in = int(input("ingrese su pin: "))
-#    time.sleep(2)
-#    print("verificando su pin...")
-#    time.sleep(2)
+log_in = int(input("ingrese su pin: "))
+time.sleep(2)
+print("verificando su pin...")
+time.sleep(2)
+while log_in != primer_pin:
+   print("El pin es incorrecto.") 
+   log_in = int(input("ingrese su pin: "))
+   time.sleep(2)
+   print("verificando su pin...")
+   time.sleep(2)
 
-# log_in_cuenta = int(input("ingrese su numero de cuenta: "))
-# time.sleep(2)
-# print("verificando su cuenta...")
-# time.sleep(2)
-# while log_in_cuenta != cuenta_personal:
-#    print("El numero de cuenta es incorrecto.")
-#    log_in_cuenta = int(input("ingrese su numero de cuenta: "))
-#    time.sleep(2)
-#    print("verificando su cuenta...")
-#    time.sleep(2)
+log_in_cuenta = int(input("ingrese su numero de cuenta: "))
+time.sleep(2)
+print("verificando su cuenta...")
+time.sleep(2)
+while log_in_cuenta != cuenta_personal:
+   print("El numero de cuenta es incorrecto.")
+   log_in_cuenta = int(input("ingrese su numero de cuenta: "))
+   time.sleep(2)
+   print("verificando su cuenta...")
+   time.sleep(2)
 
 
 print(f"Bienvenido Sr {name} a su cuenta")
@@ -86,8 +88,10 @@ while True:
                print("Exelente, ya usted puede transferir")
                time.sleep(2)
                deposito = int(input("Introzduzcala cantidad de dinero que desea transferir:"))
-               print("Procesando....")
-               time.sleep(3)
+               print("Procesando", end="", flush=True)
+               for _ in range(5):
+                time.sleep(1.2)
+                print(".", end="", flush=True)
                if deposito > balance_personal:
                     print("no puede transferir esa cantidad de dinero, su balence es insuficiente")
                else:
@@ -101,12 +105,12 @@ while True:
         
         case "3":
             print("Para cambiar el pin, usted debe ingreser su pin actual")
-            Pin = int(input("ingrese su pin actual:"))
+            pin = int(input("ingrese su pin actual:"))
             print("Verificando pin", end="", flush=True)
             for _ in range(5):
                 time.sleep(1.2)
                 print(".", end="", flush=True)
-            if  Pin == primer_pin:
+            if  pin == primer_pin:
                 print("Exelente, ahora ya usted puede cambiar su Pin") 
                 nuevo_pin = int(input("ingrese su nuevo pin: "))
                 print("Actualizando pin ", end="", flush=True)
@@ -161,16 +165,20 @@ while True:
         case "7":
             recarga = input("Digite su numero de de telefono: ")
             if recarga in dicc:
-                print(f"bien, su numero ha sido encontrado: |{dicc[recarga]}|")
-                montoRecagra = int(input("Digite el monto de la recarga: ")) 
-                if montoRecagra > balance_personal:
-                    print("No puede realizar la recarga, su balence es insuficiente")
+                print(f"bien, su numero ha sido encontrado: numero de  |{dicc[recarga]}|")
+                montoRecarga = int(input("Digite el monto de la recarga: ")) 
+                print("Procesando recarga", end="", flush=True)
+                for _ in range(5):
+                    time.sleep(1.2)
+                    print(".", end="", flush=True)
+                if montoRecarga > balance_personal or montoRecarga < 50:
+                    print("No puede realizar la recarga, su balence es insuficiente o el monto es menor a 50 pesos")
                 else:
-                    print("Procesando recarga...")
+
                     time.sleep(2)
-                    balance_personal -= montoRecagra
+                    balance_personal -= montoRecarga
                     print("Recarga realizada correctamente.")
-                    historial.append(f"Usted ha realizado una recarga al numero {recarga} de {montoRecagra}")
+                    historial.append(f"Usted ha realizado una recarga al numero {recarga} de {montoRecarga}")
         
             else:
                 print("Numero no encontrado..")
